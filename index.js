@@ -39,6 +39,7 @@ module.exports.identity = identity;
  * typeOf: Designed to determine the type of a given value taken as an argument.
  * 
  * @param { Value }: Function takes any input value to determine it's type.
+ * @return { String }: Function returns string of input value's datatype.
  */
 
 function typeOf(value){
@@ -60,7 +61,8 @@ module.exports.typeOf = typeOf;
  * or an empty array if number is negative.
  * 
  * @param { Array }: Function takes an array.
- * @param { Number }: Funciton takes a number to determine what part of the arrya to return.
+ * @param { Number }: Funciton takes a number to determine what part of the array to return.
+ * @return { Array }: Function returns an empty array if no array is given or if num is negative. Returns first element of array if no num is given. Returns every elemnt of the array up to the given number index if array and num are provided.
  */
 
 function first(array, num){
@@ -86,7 +88,8 @@ module.exports.first = first;
  * number index or an empty array if number is negative.
  * 
  * @param { Array }: Function takes an array.
- * @param { Number }: Funciton takes a number to determine what part of the arrya to return.
+ * @param { Number }: Function takes a number to determine what part of the arrya to return.
+ * @return { Array }: Function returns an empty array if no array is given of if num is negative. Returns last element of array if no num is given. Returns every element from the end to the given num if both num and aray are provided.
  */
 
 function last(array, num){
@@ -97,15 +100,15 @@ function last(array, num){
     } else {
         if (num > array.length){
             return array;
-        }
-         else if (num > 0){
+        } else if (num > 0){
             return array.slice(-num);
-         }
-         else if (num < 0){
+         } else if (num < 0){
             return [];
          }
     }
 }
+ 
+        
 module.exports.last = last;
 
 /**
@@ -115,6 +118,7 @@ module.exports.last = last;
  * 
  * @param { Array }: Function takes an array to iterate over.
  * @param { Value }: Function takes a value to determine if it's in the given array.
+ * @return { Number }: Function returns 1 if value is located in array. Returns -1 if value is not located in array.
  */
 
 function indexOf(array, value){
@@ -132,6 +136,7 @@ module.exports.indexOf = indexOf;
  * 
  * @param { Array }: Funciton takes an array to iterate over.
  * @param { Value }: Function takes value to determine if it's in the array.
+ * @return { Boolean }: Function returns true in value is contained in array. Returns false if value is not contained in array.
  */
 
 function contains(array, value){
@@ -170,6 +175,7 @@ module.exports.each = each;
  * duplicates.
  * 
  * @param { Array }: Function takes an array to iterate over.
+ * @return { Array }: Function returns a new array with no duplicates.
  */
 
 function unique(array){
@@ -189,6 +195,7 @@ module.exports.unique = unique;
  * 
  * @param { Array }: Function takes an array to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Array }: Function returns a new array with only elements that return true after being passed through the given function.
  */
 
 function filter(array, func){
@@ -203,11 +210,12 @@ function filter(array, func){
 module.exports.filter = filter;
 
 /**
- * reject: Designed to iterate through an array and call a function for each element returning
- * a new array with the elemnts that return true.
+ * reject: Designed to iterate over an array and call a function for each element returning
+ * a new array with the elements that don't return true.
  * 
  * @param { Array }: Function takes an array to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Array }: Function returns a new array with elements that don't return true after being passed through the given function.
  */
 
 function reject(array, func){
@@ -228,6 +236,7 @@ module.exports.reject = reject;
  * 
  * @param { Array }: Function takes an array to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Array }: Function returns a new array of arrays with one being the true value of passing the given arrays element through the given function and the other array with the elements that returned false.
  */
 
 function partition(array, func){
@@ -250,6 +259,7 @@ module.exports.partition = partition;
  * 
  * @param { Array or Object } collection: Function takes an array or object to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Array }: Function returns a new array with the results of calling the given function on each collection element.
  */
 
 function map(collection, func){
@@ -272,6 +282,7 @@ module.exports.map = map;
  * 
  * @param { Array of objects }: Function takes an array of objects to iterate over.
  * @param { Property }: Function takes a property to return it's values from array of objects.
+ * @return { Array }: Function returns the value at the given property for each object in the given array in an array.
  */
 
 function pluck(array, property) {
@@ -287,6 +298,7 @@ module.exports.pluck = pluck;
  * Returns true if all function calls are true.
  * @param { Array or Object } collection: Function takes an array or object to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Boolean }: Function returns false if every element/property of the given array/object does not return true when passed through the given function. Returns true if ALL array/object elements/properties return true when being passed through the given funciton.
  */
 
 function every(collection, func){
@@ -329,8 +341,9 @@ module.exports.every = every;
  * and calls given function on each element. Determines if ANY function call returns true and returns true.
  * Returns falls if NO function calls return true
  * 
-* @param { Array or Object } collection: Function takes an array or object to iterate over.
+ * @param { Array or Object } collection: Function takes an array or object to iterate over.
  * @param { Function }: Function takes a function to call on each element.
+ * @return { Boolean }: Returns true if ANY element/property returns true when passed through the given function. Returns false if NO function call returns true.
  */
 
 function some(collection, func){
@@ -371,6 +384,7 @@ module.exports.some = some;
  * @param { Array }: Function takes an array to iterate over.
  * @param { Function }: Function takes a function to call on each element.
  * @param { Seed }: Function takes an optional seed that determines the starting 'result' of the given function.
+ * @return { Any Datatype }: Function will return single result after running a function on every element of an array and re-injecting the result of the function call back into the function for the next function call.
  */
 
 function reduce(array, func, seed){
@@ -395,6 +409,7 @@ module.exports.reduce = reduce;
  * @param { Object }: Function takes an object that will receive copies of other given objects
  * @param { Object }: Function takes another object to copy to first object.
  * @param { Object } ...object: Function takes an indefinite number of object to copy to first objcet.
+ * @return { Object }: Function returns first object given with all of the properties of every other given object.
 */
 
 function extend(object1, object2, ...object3){
